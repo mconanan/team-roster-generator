@@ -1,0 +1,23 @@
+{
+  "name": "team-roster-generator",
+  "version": "1.0.0",
+  "description": "command line application that creates an organized team roster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mconanan/team-roster-generator.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mconanan/team-roster-generator/issues"
+  },
+  "homepage": "https://github.com/mconanan/team-roster-generator#readme",
+  "dependencies": {
+    "async": "^3.2.4",
+    "inquirer": "^6.0.0"
+  }
+}
