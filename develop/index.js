@@ -2,13 +2,14 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
 const path = require("path");
-const generateHTML = require("./generateHTML");
+const generateHTML = require("./generateHTML.js");
 const async = require("async");
 const Manager = require("./utils/manager");
 const Engineer = require("./utils/engineer");
 const Intern = require("./utils/intern");
 const teamRoster = [];
 
+console.log(generateHTML());
 // array of questions for inquirer
 const questions = [
   {
@@ -32,7 +33,7 @@ const questions = [
   {
     type: "input",
     message: "What is the team manager's office number?",
-    name: "managerNumber",
+    name: "officeNumber",
     default: "",
   },
 ];
@@ -101,19 +102,18 @@ const internQuestions = [
   },
 ];
 
-
-
 //  function to initialize inquirer and ask questions about the manager
 function init() {
   inquirer.prompt(questions).then((answers) => {
     console.log("manager answers", answers);
     const manager = new Manager(
-      answers.name,
-      answers.id,
-      answers.email,
-      answers.gitHub
+      answers.managerName,
+      answers.managerId,
+      answers.managerEmail,
+      answers.officeNumber
     );
     teamRoster.push(manager);
+    console.log("team roster", teamRoster);
     nextMemberPrompt();
   });
 }
@@ -129,7 +129,12 @@ const nextMemberPrompt = () => {
         renderIntern();
         break;
       default:
-        renderTeam();
+        
+        // function to join the "generated.html" file into the working directory
+        const HTML = generateHTML(teamRoster);
+        fs.writeFileSync("generated.html", generateHTML(teamRoster));
+        console.log(`Here is your team! ${teamRoster}`);
+        console.log(HTML);
     }
   });
 };
@@ -138,12 +143,13 @@ const renderEngineer = () => {
   return inquirer.prompt(engineerQuestions).then((answers) => {
     console.log("engineer answers", answers);
     const engineer = new Engineer(
-      answers.name,
-      answers.id,
-      answers.email,
-      answers.officeNumber
+      answers.engineerName,
+      answers.engineerId,
+      answers.engineerEmail,
+      answers.engineerGithub
     );
     teamRoster.push(engineer);
+    console.log("team roster", teamRoster);
     nextMemberPrompt();
   });
 };
@@ -152,30 +158,22 @@ const renderIntern = () => {
   return inquirer.prompt(internQuestions).then((answers) => {
     console.log("intern answers", answers);
     const intern = new Intern(
-      answers.name,
-      answers.id,
-      answers.email,
-      answers.school
+      answers.internName,
+      answers.internId,
+      answers.internEmail,
+      answers.internSchool
     );
+
     teamRoster.push(intern);
+    console.log("team roster", teamRoster);
     nextMemberPrompt();
   });
 };
 
-const renderTeam = () => {
-    console.log('YOUR TEAM', answers);
+console.log("team roster", teamRoster);
 
-      
-    // function to join the "generated.html" file into the working directory
-    function writeToFile(fileName, answers) {
-    fs.writeFileSync(path.join(process.cwd(), fileName), answers);
-    
-    writeToFile("generated.html", generateHTML);
-  }
-}
+// function renderTeam(teamRoster) {
+
+// };
 
 init();
-
-// the function that takes the answers and writes them to the generateHTML function, which then places them into the generated.html file
-// .then((answers) => { console.log('answers', answers);
-//         writeToFile("generated.html", generateHTML           (answers)) });
