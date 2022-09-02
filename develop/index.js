@@ -9,7 +9,8 @@ const Engineer = require("./utils/engineer");
 const Intern = require("./utils/intern");
 const teamRoster = [];
 
-console.log(generateHTML());
+
+
 // array of questions for inquirer
 const questions = [
   {
@@ -132,8 +133,9 @@ const nextMemberPrompt = () => {
         
         // function to join the "generated.html" file into the working directory
         const HTML = generateHTML(teamRoster);
+        console.log(teamRoster);
         fs.writeFileSync("generated.html", generateHTML(teamRoster));
-        console.log(`Here is your team! ${teamRoster}`);
+        
         console.log(HTML);
     }
   });
@@ -177,3 +179,21 @@ console.log("team roster", teamRoster);
 // };
 
 init();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+module.exports = Engineer;

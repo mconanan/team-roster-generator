@@ -41,3 +41,108 @@
   </div>
   <body></body>
 </html>
+
+
+<!-- creating duplicate cards assigning all answers to every member -->
+
+const generateManager = (data) => {
+  return data.map((member) => {
+    return `<div class="card" style="width: 18rem">
+           <div class="card-header">Manager</div>
+           <ul class="list-group list-group-flush">
+            <li class="list-group-item">${member.name}</li>
+            <li class="list-group-item">${member.id}</li>
+            <li class="list-group-item">${member.email}</li>
+               <li class="list-group-item">${member.officeNumber}</li>
+          </ul>
+        </div>`;
+  });
+};
+
+
+const generateEngineer = (data) => {
+  return data.map((member) => {
+    return `<div class="card" style="width: 18rem">
+           <div class="card-header">Engineer</div>
+           <ul class="list-group list-group-flush">
+            <li class="list-group-item">${member.name}</li>
+            <li class="list-group-item">${member.id}</li>
+            <li class="list-group-item">${member.email}</li>
+               <li class="list-group-item">${member.gitHub}</li>
+          </ul>
+        </div>`;
+  });
+};
+
+const generateIntern = (data) => {
+  return data.map((member) => {
+    return `<div class="card" style="width: 18rem">
+           <div class="card-header">Engineer</div>
+           <ul class="list-group list-group-flush">
+            <li class="list-group-item">${member.name}</li>
+            <li class="list-group-item">${member.id}</li>
+            <li class="list-group-item">${member.email}</li>
+               <li class="list-group-item">${member.school}</li>
+          </ul>
+        </div>`;
+  });
+};
+
+<!-- switch case -->
+function populateEmployee() {
+  switch (member.employee) {
+    case "Engineer":
+      if (member === "Engineer"):
+       append()
+      break;
+    case "Intern":
+      renderIntern();
+      break;
+    default:
+}
+} 
+<!-- if statement -->
+const generateManager = (data) => {
+  return data.map((member) => {
+    console.log("-MEMBER-", member);
+    if (member == this.Manager) {
+    return `<div class="card" style="width: 18rem">
+           <div class="card-header">${member}</div>
+           <ul class="list-group list-group-flush">
+            <li class="list-group-item">${member.name}</li>
+            <li class="list-group-item">${member.id}</li>
+            <li class="list-group-item">${member.email}</li>
+          </ul>
+        </div>`;
+        }
+    else {
+      console.log("empty");
+      return "";
+    }
+  })
+};
+
+<!-- for each member -->
+
+const generateEmployee = (data) => {
+  return data.map((member) => {
+    return `<div class="card" style="width: 18rem">
+           <div class="card-header">${member}</div>
+           <ul class="list-group list-group-flush">
+            <li class="list-group-item">${member.name}</li>
+            <li class="list-group-item">${member.id}</li>
+            <li class="list-group-item">${member.email}</li> 
+          </ul>
+        </div>`;
+  });
+
+};
+
+specifyEmployee = (member) => {
+  if (getRole() === "Engineer") {
+    ul.append(`<li class="list-group-item">${member.gitHub}</li>`)
+  }
+  if (getRole() === "Intern") {
+    ul.append(`<li class="list-group-item">${member.school}</li>`)
+  }
+}
